@@ -8,6 +8,94 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Sofia Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.main-title__box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-title__name{
+  font-weight: 700;
+}
+
+.list-group-flush{
+  border-radius: 40px;
+}
+
+.list-group-item {
+  margin-bottom: 10px;
+  border-radius: 10px !important;
+}
+.card {
+  border-radius: 20px;
+  background-color: transparent !important;
+  border: none !important
+}
+
+.card__add-task{
+  border-radius: 20px;
+}
+
+
+.date-line{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.date-item {
+  min-width: 45px;
+  min-height: 45px;
+  border: 2px solid #BDBDBD;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.date-item:hover {
+  background-color: #e0e5ea;
+}
+
+.date-item--selected {
+  background-color: #42BE2A;
+  color: white;
+  border-color: #42BE2A;
+}
+
+.date-item__day {
+  font-size: 14px;
+}
+
+.date-item__date {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#openCalendar {
+  margin-left: 10px;
+}
+
+.calendar{
+  display: none;
 }
 .aside {
   height: 400px;
@@ -54,6 +142,35 @@ body {
   color: #42BE2A;
   font-size: 32px;
 }
+
+.btn{
+  background-color: #42BE2A;
+  color: #fff;
+  border: none;
+}
+
+.date-line__calendar{
+  display: flex;
+  border: none;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+#openCalendar {
+  margin-left: 10px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#openCalendar:active,
+#openCalendar:focus {
+  outline: none;
+  background-color: #42BE2A;
+}
+
+
 .btn-action {
     background-color: #e0e5ea;
     padding: 8px 10px;
@@ -96,3 +213,6 @@ body {
   /* left: 0; */
   /* right: 0; */
 }
+
+
+
