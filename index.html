@@ -19,20 +19,20 @@
 			<div class="main-title__description h4 mb-5">список задач на сегодня</div>
 		</div>
 		<div class="date-line mb-4">
-
-			<li id="emptyList" class="list-group-item empty-list">
-				<img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3">
-				<div class="empty-list__title">Список дел пуст</div>
-			</li>
-
 			<ul id="dateList" class="date-list"></ul>
 			<button id="openCalendar" class="date-line__calendar">
 				<img src="./img/calendar.png" alt="calendar">
 			</button>
 			<input type="date" id="calendarInput" class="calendar">
 		</div>
+
 		<!-- List of tasks -->
 		<div class="tasks-list card mb-4">
+					<li id="emptyList" class="list-group-item empty-list none">
+			<img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3">
+			<div class="empty-list__title">Список дел пуст</div>
+		</li>
+
 			<ul id="tasksList" class="list-group list-group-flush">
 			</ul>
 		</div>
@@ -40,7 +40,8 @@
 
 		<!-- Form -->
 		<div class="card__add-task bg-light" >
-			<div class="card-header">Добавить новую задачу</div>
+			<div class="card-header mb-2">Добавить новую задачу</div>
+			<div id="selectedDateDisplay" class="ml-3 tet-muted"></div>
 			<div class="card-body">
 				<form id="form">
 					<div class="form-group">

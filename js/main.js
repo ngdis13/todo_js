@@ -6,6 +6,7 @@ const emptyList = document.querySelector("#emptyList");
 const dateList = document.querySelector("#dateList");
 const openCalendar = document.querySelector("#openCalendar");
 const calendarInput = document.querySelector("#calendarInput");
+const selectedDateDisplay = document.querySelector('#selectedDateDisplay');
 
 let tasks = [];
 let selectedDate = new Date().toISOString().split("T")[0];
@@ -16,10 +17,28 @@ if (localStorage.getItem("tasks")) {
 }
 
 checkEmptyList();
+updateSelectedDateDisplay();
 
 form.addEventListener("submit", addTask);
 tasksList.addEventListener("click", deleteTask);
 tasksList.addEventListener("click", doneTask);
+
+
+function updateSelectedDateDisplay(){
+  if (selectedDate){
+    const date = new Date(selectedDate);
+
+    if(!isNaN(date.getTime())){
+      const options = {year: 'numeric', month: 'long', day: 'numeric'};
+      const formatDate = date.toLocaleDateString('ru-RU', options);
+      selectedDateDisplay.textContent = `Выбрана дата: ${formatDate}`
+    } 
+  } else {
+    selectedDateDisplay.textContent = "Выберите дату"
+  }
+  
+
+}
 
 function renderDateLine() {
   dateList.innerHTML = "";
@@ -43,6 +62,7 @@ function renderDateLine() {
 function renderTasksForDate(){
   tasksList.innerHTML = '';
   const tasksForDate = tasks.filter(task => task.date === selectedDate);
+  console.log(tasksForDate)
   tasksForDate.forEach(task => renderTask(task));
   checkEmptyList(tasksForDate);
 }
@@ -88,18 +108,14 @@ function doneTask(event) {
   }
 }
 
-function checkEmptyList() {
-  if (tasks.length === 0) {
-    const emptyListHTML = `<li id="emptyList" class="list-group-item empty-list">
-      <img src="./img/leaf.svg" alt="Empty" width="48" class="mt-3">
-      <div class="empty-list__title">Список дел пуст</div>
-    </li>`;
-    tasksList.insertAdjacentHTML("afterbegin", emptyListHTML);
-  }
+function checkEmptyList(taskForDate) {
+  const tasksToCheck = taskForDate || tasks.filter(task => task.date === selectedDate);
+  const emptyListEl = document.querySelector("#emptyList");
 
-  if (tasks.length > 0) {
-    const emptyListEl = document.querySelector("#emptyList");
-    emptyListEl ? emptyListEl.remove() : null;
+  if (tasksToCheck.length === 0) {
+    emptyListEl.classList.remove("none"); 
+  } else {
+    emptyListEl.classList.add("none"); 
   }
 }
 
@@ -131,6 +147,7 @@ function renderDateList(event) {
   const dateItem = event.target.closest(".date-item");
   if (dateItem) {
     selectedDate = dateItem.dataset.date;
+    updateSelectedDateDisplay();
     renderDateLine();
     renderTasksForDate();
   }
@@ -142,6 +159,7 @@ openCalendar.addEventListener("click", () => {
 
 calendarInput.addEventListener("change", () => {
   selectedDate = calendarInput.value;
+  updateSelectedDateDisplay();
   renderDateLine();
   renderTasksForDate();
 });
