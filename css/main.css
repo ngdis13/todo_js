@@ -47,7 +47,6 @@ body {
 .date-line{
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .date-list {
@@ -69,6 +68,10 @@ body {
   margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.date-item:last-child {
+  margin-right: 0;
 }
 
 .date-item:hover {
@@ -95,7 +98,7 @@ body {
 }
 
 .calendar{
-  display: none;
+  opacity: 0;
 }
 .aside {
   height: 400px;
@@ -109,6 +112,12 @@ body {
 .task-title {
   font-weight: 400;
   padding-top: 5px;
+  flex-grow: 1;
+  margin-right: 10px;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 .gray {
   color: #BDBDBD;
@@ -117,9 +126,18 @@ body {
   text-decoration: line-through;
   color: #CDCDCD;
 }
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .task-item__buttons {
   display: flex;
   column-gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
 }
 .notify-holder {
   height: 60px;

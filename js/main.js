@@ -22,7 +22,7 @@ updateSelectedDateDisplay();
 form.addEventListener("submit", addTask);
 tasksList.addEventListener("click", deleteTask);
 tasksList.addEventListener("click", doneTask);
-
+dateList.addEventListener("click", renderDateList);
 
 function updateSelectedDateDisplay(){
   if (selectedDate){
@@ -40,15 +40,19 @@ function updateSelectedDateDisplay(){
 
 }
 
-function renderDateLine() {
+function renderDateLine(startDateString) {
   dateList.innerHTML = "";
-  const today = new Date();
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
+
+  let startDate = new Date(startDateString);
+
+  for (let i = 0; i < 6; i++) {
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + i);
+
     const dateStr = date.toISOString().split("T")[0];
     const dayName = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"][date.getDay()];
     const dateNum = date.getDate();
+
     const isSelected = dateStr === selectedDate ? "date-item--selected" : "";
     const dateHTML = `
       <li class="date-item ${isSelected}" data-date="${dateStr}">
@@ -141,28 +145,32 @@ function renderTask(task) {
   tasksList.insertAdjacentHTML("beforeend", taskHTML);
 }
 
-dateList.addEventListener("click", renderDateList);
 
 function renderDateList(event) {
   const dateItem = event.target.closest(".date-item");
   if (dateItem) {
     selectedDate = dateItem.dataset.date;
     updateSelectedDateDisplay();
-    renderDateLine();
+    renderDateLine(selectedDate);
     renderTasksForDate();
   }
 }
 
 openCalendar.addEventListener("click", () => {
-  calendarInput.showPicker();
+  // calendarInput.showPicker();
+  if (typeof calendarInput.showPicker === 'function'){
+    calendarInput.showPicker();
+  } else {
+    calendarInput.focus()
+  }
 });
 
 calendarInput.addEventListener("change", () => {
   selectedDate = calendarInput.value;
   updateSelectedDateDisplay();
-  renderDateLine();
+  renderDateLine(selectedDate);
   renderTasksForDate();
 });
 
-renderDateLine();
+renderDateLine(selectedDate);
 renderTasksForDate();
