@@ -161,7 +161,7 @@ openCalendar.addEventListener("click", () => {
   if (typeof calendarInput.showPicker === 'function'){
     calendarInput.showPicker();
   } else {
-    calendarInput.focus()
+    calendarInput.click();
   }
 });
 
