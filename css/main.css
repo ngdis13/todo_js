@@ -12,6 +12,8 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 .main-title__box{
@@ -98,15 +100,9 @@ body {
 }
 
 .calendar {
-  position: absolute; /* Или fixed */
-  left: -9999px; 
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+  width: 0;
+  height: 0;
+  opacity: 0;
 }
 .aside {
   height: 400px;
