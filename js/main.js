@@ -44,8 +44,9 @@ function renderDateLine(startDateString) {
   dateList.innerHTML = "";
 
   let startDate = new Date(startDateString);
+  const numDays = window.innerWidth < 576 ? 5:6;
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < numDays; i++) {
     const date = new Date(startDate);
     date.setDate(startDate.getDate() + i);
 
@@ -171,6 +172,9 @@ calendarInput.addEventListener("change", () => {
   renderDateLine(selectedDate);
   renderTasksForDate();
 });
+
+
+
 
 renderDateLine(selectedDate);
 renderTasksForDate();
