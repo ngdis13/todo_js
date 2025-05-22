@@ -44,7 +44,7 @@ function renderDateLine(startDateString) {
   dateList.innerHTML = "";
 
   let startDate = new Date(startDateString);
-  const numDays = window.innerWidth < 576 ? 5:6;
+  const numDays = window.innerWidth < 576 ? 4:6;
 
   for (let i = 0; i < numDays; i++) {
     const date = new Date(startDate);
