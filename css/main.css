@@ -56,7 +56,6 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-wrap: wrap;
 }
 
 .date-item {
@@ -238,33 +237,3 @@ body {
   margin-bottom: 30px;
 }
 
-
-@media (max-width: 768px) {
-  .date-item {
-    min-width: 40px; /* Уменьшаем ширину элементов */
-    height: 40px;
-  }
-  .date-item__day {
-    font-size: 12px; /* Уменьшаем размер шрифта */
-  }
-  .date-item__date {
-    font-size: 14px; /* Уменьшаем размер шрифта */
-  }
-}
-
-@media (max-width: 576px) {
-  .date-item {
-    min-width: 35px; /* Еще меньше для мобильных устройств */
-    height: 35px;
-  }
-  .date-item__day {
-    font-size: 10px; /* Еще меньше шрифт */
-  }
-  .date-item__date {
-    font-size: 12px;
-  }
-  .date-line__calendar {
-    width: 40px; /* Уменьшаем кнопку календаря */
-    height: 40px;
-  }
-}
