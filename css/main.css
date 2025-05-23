@@ -106,6 +106,8 @@ body {
   opacity: 0; /* Оставляем невидимым */
   top: 0;
   left: 0;
+  z-index: 10;
+
 }
 .aside {
   height: 400px;
@@ -187,7 +189,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  z-index: 10;
+
 }
 
 #openCalendar {
