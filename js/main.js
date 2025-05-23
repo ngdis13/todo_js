@@ -158,11 +158,36 @@ function renderDateList(event) {
 }
 
 openCalendar.addEventListener("click", () => {
-  // calendarInput.showPicker();
-  if (typeof calendarInput.showPicker === 'function'){
-    calendarInput.showPicker();
+  if (typeof calendarInput.showPicker === "function") {
+    try {
+      calendarInput.showPicker();
+    } catch (e) {
+      console.warn("showPicker не сработал, используем Flatpickr");
+      flatpickr("#calendarInput", {
+        locale: "ru",
+        dateFormat: "Y-m-d",
+        defaultDate: selectedDate,
+        onChange: (selectedDates) => {
+          selectedDate = selectedDates[0].toISOString().split("T")[0];
+          updateSelectedDateDisplay();
+          renderDateLine(selectedDate);
+          renderTasksForDate();
+        },
+      }).open();
+    }
   } else {
-    calendarInput.click();
+    // Если showPicker не поддерживается, открываем Flatpickr
+    flatpickr("#calendarInput", {
+      locale: "ru",
+      dateFormat: "Y-m-d",
+      defaultDate: selectedDate,
+      onChange: (selectedDates) => {
+        selectedDate = selectedDates[0].toISOString().split("T")[0];
+        updateSelectedDateDisplay();
+        renderDateLine(selectedDate);
+        renderTasksForDate();
+      },
+    }).open();
   }
 });
 
