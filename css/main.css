@@ -100,19 +100,12 @@ body {
 }
 
 .calendar {
-  position: absolute;
-  width: 50px; /* Размер кнопки #openCalendar */
-  height: 50px; /* Размер кнопки #openCalendar */
-  opacity: 0; /* Оставляем невидимым */
-  top: 0;
-  left: 0;
-  z-index: 10;
-
+width: 0;
+height: 0;
+opacity: 0;
 }
 
-.img-calendar{
-  z-index: -10;
-}
+
 .aside {
   height: 400px;
 }
