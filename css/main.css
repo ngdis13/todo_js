@@ -109,6 +109,10 @@ body {
   z-index: 10;
 
 }
+
+.img-calendar{
+  z-index: -10;
+}
 .aside {
   height: 400px;
 }
