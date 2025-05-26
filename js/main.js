@@ -24,6 +24,32 @@ tasksList.addEventListener("click", deleteTask);
 tasksList.addEventListener("click", doneTask);
 dateList.addEventListener("click", renderDateList);
 
+
+
+// Инициализация Flatpickr для календаря
+const flatpickrInstance = flatpickr(calendarInput, {
+  locale: "ru", // Локализация на русском
+  dateFormat: "Y-m-d", // Формат даты, соответствующий ISO
+  defaultDate: selectedDate, // Устанавливаем текущую дату
+  onChange: function(selectedDates) {
+    if (selectedDates.length > 0) {
+      selectedDate = selectedDates[0].toISOString().split("T")[0];
+      updateSelectedDateDisplay();
+      renderDateLine(selectedDate);
+      renderTasksForDate();
+    }
+  },
+  // Отключаем нативный календарь, чтобы он не мешал
+  disableMobile: true,
+  // Привязываем открытие календаря к кнопке
+  clickOpens: false
+});
+
+if (localStorage.getItem("tasks")) {
+  tasks = JSON.parse(localStorage.getItem("tasks"));
+  renderTasksForDate();
+}
+
 function updateSelectedDateDisplay(){
   if (selectedDate){
     const date = new Date(selectedDate);
@@ -158,11 +184,7 @@ function renderDateList(event) {
 }
 
 openCalendar.addEventListener("click", () => {
-  if (typeof calendarInput.showPicker === "function") {
-    calendarInput.showPicker();
-  } else {
-    calendarInput.click();
-  }
+  flatpickrInstance.open(); // Открываем календарь Flatpickr
 });
 
 calendarInput.addEventListener("change", () => {
