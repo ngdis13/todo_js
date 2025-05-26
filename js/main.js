@@ -39,8 +39,6 @@ const flatpickrInstance = flatpickr(calendarInput, {
       renderTasksForDate();
     }
   },
-  // Отключаем нативный календарь, чтобы он не мешал
-  disableMobile: true,
   // Привязываем открытие календаря к кнопке
   clickOpens: false
 });
