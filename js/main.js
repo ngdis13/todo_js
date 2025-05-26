@@ -160,6 +160,8 @@ function renderDateList(event) {
 openCalendar.addEventListener("click", () => {
   if (typeof calendarInput.showPicker === "function") {
     calendarInput.showPicker();
+  } else {
+    calendarInput.click();
   }
 });
 
